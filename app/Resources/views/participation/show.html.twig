@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+    <br><br><br><br><br>
+    <section class="section pricing">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="section-title">
+                        <div class="divider mb-3"></div>
+                        <h2>Invitation</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="card rounded-0 px-4 py-5 ">
+                        <h2 class="card-title text-capitalize font-weight-normal font-secondary"> <span style="color:blue">{{ event.nom }}</span></h2>
+                        <h4 class="card-title text-capitalize font-weight-normal font-secondary">Invitation num : {{ participation.id }}</h4>
+                        <h4 class="card-title text-capitalize font-weight-normal font-secondary">Mr/Mme : {{ user }}</h4>
+                        <h3 class="text-lg font-secondary position-relative mt-2"><sup class="text-sm position-absolute ">*</sup> <span style="color: lime;">Le</span> <sub>{{ event.dateDebut|date('Y-m-d') }}</sub></h3>
+
+                        <div class="card-body mt-2">
+                            <ul class="list-unstyled lh-35 mb-4">
+                                <li class="text-black font-weight-bold"><i class="ti-check mr-3 text-color "></i>Soyez le bienvenue</li>
+                            </ul>
+                            <a href="#" onclick="window.print();" class="btn btn-solid-border text-black">Imprimer</a>
+                        </div>
+                    </div>
+                    <br>
+                    <a href="{{ path('eventsfront_show',{ 'idEvents': event.idEvents }) }}" class="btn btn-solid-border text-black">Back to the list</a>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

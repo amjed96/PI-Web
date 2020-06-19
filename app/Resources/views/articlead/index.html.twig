@@ -1,0 +1,126 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <div class="" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Blog <small>Liste des articles</small></h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" id="search" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Articles</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Settings 1</a>
+                                        <a class="dropdown-item" href="#">Settings 2</a>
+                                    </div>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+
+                            <p>Consulter et supprimer les articles</p>
+
+                            <!-- start project list -->
+                            <table class="table table-striped projects" id="tableac">
+                                <thead>
+                                <tr>
+                                    <th style="width: 1%">#</th>
+                                    <th style="width: 20%">Titre</th>
+                                    <th>Contenu</th>
+                                    <th>Image</th>
+                                    <th style="width: 20%">#Edit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for article in articles %}
+                                    <tr>
+                                        <td>{{ article.id }}</td>
+                                        <td>
+                                            <a>{{ article.titre }}</a>
+                                            <br />
+                                            <small>{# Created 01.01.2015 #}</small>
+                                        </td>
+
+                                        <td class="project_progress">
+                                            <a>{{ article.contenu }}</a>
+                                            <br />
+                                            <small>{# Created 01.01.2015 #}</small>
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset('uploads/images/articles/') }}{{ article.image }}" height="100px;">
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('article_show', { 'id': article.id }) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Show </a>
+                                            <a href="{{ path('article_edit', { 'id': article.id }) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                            <a href="{{ path('article_delete', { 'id': article.id }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                        </td>
+                                    </tr>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#search').keyup(function(){
+                                                search_table($(this).val());
+                                            });
+                                            function search_table(value){
+                                                $('#tableac tbody tr').each(function(){
+                                                    var found = 'false';
+                                                    $(this).each(function(){
+                                                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                                        {
+                                                            found = 'true';
+                                                        }
+                                                    });
+                                                    if(found == 'true')
+                                                    {
+                                                        $(this).show();
+
+                                                    }
+                                                    else
+                                                    {
+                                                        $(this).hide();
+
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    </script>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- end project list -->
+
+                        </div>
+                        <a href="{{ path('article_new') }}" class="btn btn-success btn-xs">Nouvel Article</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <br><br><br>
+    <h1>Recherche reclamations par titre </h1>
+    <br><br><br>
+    <form method="post">
+        <input type="text" name="titre">
+        <input type="submit" value="recherche">
+    </form>
+    <table  class="table table-striped jambo_table bulk_action">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Etat</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in pagination %}
+            <tr>
+                <td>{{ reclamation.titre }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reclamation_show', { 'id': reclamation.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reclamation_edit', { 'id': reclamation.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        <div class="row justify-content-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reclamation_new') }}">Create a new reclamation</a>
+        </li>
+    </ul>
+
+{% endblock %}

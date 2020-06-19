@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="text-center p-5 shadow">
+                        <td><img style="width:650px; height: 650px;" src="{{ asset('uploads/events/' ~ event.photo) }}"
+                                 class="card-img-top"></td>
+                        <br>
+                        <h2 class="mb-3"><span class="text-color">{{ event.nom }}</span></h2>
+                        <h4 class="mb-3">Lieu : {{ event.lieu }}</h4>
+                        <h4>Nombre de places : {{ event.nbPlaces }}</h4>
+                        <div class="blog-post-meta text-capitalize mb-2">
+				<span class="post-meta date-meta mr-2">
+                    <i class="ti-calendar mr-2"></i>De : {% if event.dateDebut %}{{ event.dateDebut|date('Y-m-d') }}{% endif %}</span>
+                            <span class="post-meta date-meta mr-2">
+                    <i class="ti-calendar mr-2"></i>à : {% if event.dateFin %}{{ event.dateFin|date('Y-m-d') }}{% endif %}</span>
+
+
+                        </div>
+                        <ul class="list-unstyled mb-4">
+                            <li>{{ event.description }}</li>
+                        </ul>
+                        {% if (event.nbPlaces ==0 )%}
+                            <h1>place terminer</h1>
+                        {% else %}
+                        {% if app.user is null %}Login requis{% elseif test %}
+                            <a href="{{ path('participation_annuler',{'idevent': event.idEvents,'iduser': app.user.id}) }}" class="btn btn-main">departciper</a>
+                        {% else %}
+                            <a href="{{ path('participation_new',{'id': event.idEvents}) }}" class="btn btn-main">Participer</a>
+                        {% endif %}
+                        {% endif %}
+                        <br><br>
+                        <a href="{{ path('eventsfront_index') }}" class="btn btn-main">Retour</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

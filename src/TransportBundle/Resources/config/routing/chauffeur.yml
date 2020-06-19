@@ -1,0 +1,24 @@
+chauffeur_index:
+    path:     /
+    defaults: { _controller: "TransportBundle:Chauffeur:index" }
+    methods:  GET
+
+chauffeur_show:
+    path:     /{matricule}/show
+    defaults: { _controller: "TransportBundle:Chauffeur:show" }
+    methods:  GET
+
+chauffeur_new:
+    path:     /new
+    defaults: { _controller: "TransportBundle:Chauffeur:new" }
+    methods:  [GET, POST]
+
+chauffeur_edit:
+    path:     /{matricule}/edit
+    defaults: { _controller: "TransportBundle:Chauffeur:edit" }
+    methods:  [GET, POST]
+
+chauffeur_delete:
+    path:     /{matricule}/delete
+    defaults: { _controller: "TransportBundle:Chauffeur:delete" }
+    methods:  DELETE

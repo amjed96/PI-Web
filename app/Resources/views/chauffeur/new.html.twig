@@ -1,0 +1,52 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+<section class="bootstrap-switch-focused">
+    <div class="container">
+        <div class="row">
+            <div class="absolute-container">
+                <div class="block text-center">
+                    <a class="logo" href="#">
+                    </a>
+    <h1>Chauffeur creation</h1>
+
+    {{ form_start(form) }}
+    <table class="table table-striped jambo_table bulk_action">
+        <tr>
+            <td>Moyen</td>
+            <td>{{ form_widget(form.moyen) }}</td>
+        </tr>
+        <tr>
+            <td>destination</td>
+            <td>{{ form_widget(form.destination) }}</td>
+        </tr>
+        <tr>
+            <td>'date</td>
+            <td>{{ form_widget(form.date) }}</td>
+        </tr>
+        <tr>
+            <td>matricule</td>
+            <td>{{ form_widget(form.matricule) }}</td>
+        </tr>
+
+
+
+        <tr>
+            <td>{{ form_widget(form.Ajouter) }}</td>
+        </tr>
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+</table>
+    <ul>
+        <li>
+            <a href="{{ path('chauffeur_index') }}">Back to the list</a>
+        </li>
+    </ul>
+                </div>
+            </div>
+            </div>
+            </div>
+</section>
+
+{% endblock %}

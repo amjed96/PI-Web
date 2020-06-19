@@ -1,0 +1,42 @@
+reclamation_homepage:
+    path:     /
+    defaults: { _controller: ReclamationBundle:Default:index }
+affiche:
+    path:     /indexad
+    defaults: { _controller: ReclamationBundle:reclamation:indexadmin }
+new_reclamation:
+    path:     /new
+    defaults: { _controller: ReclamationBundle:reclamation:new }
+edit:
+    path:     /editad/{id}
+    defaults: { _controller: ReclamationBundle:reclamation:editAd }
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: ReclamationBundle:reclamation:delete }
+show:
+    path:     /showad/{id}
+    defaults: { _controller: ReclamationBundle:reclamation:showad }
+affichecat:
+    path:     /indexcat
+    defaults: { _controller: ReclamationBundle:categorie:index }
+categorie_delete:
+    path:     /{id}/delete
+    defaults: { _controller: ReclamationBundle:categorie:delete }
+recherche:
+    path:     /recherche
+    defaults: { _controller: ReclamationBundle:reclamation:recherche }
+traiter:
+    path:     /{id}/traiter
+    defaults: { _controller: ReclamationBundle:reclamation:traiter }
+pdf:
+    path:     /pdf
+    defaults: { _controller: ReclamationBundle:reclamation:pdf }
+annuler_reclamation:
+    path:   /annuler
+    defaults: { _controller: ReclamationBundle:reclamation:annuler }
+indexReclamationAction_reclamation:
+    path:   /indexReclamation
+    defaults: { _controller: ReclamationBundle:reclamation:indexReclamation }
+statistique:
+    path:   /statistique
+    defaults: { _controller: ReclamationBundle:reclamation:statistique }

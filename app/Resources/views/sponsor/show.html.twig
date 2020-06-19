@@ -1,0 +1,41 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <h1>Sponsor</h1>
+    <div class="x_content">
+        <p>La liste des sponsors</p>
+        <div class="table-responsive">
+
+            <table class="table table-striped jambo_table bulk_action">
+                <tbody>
+                <tr>
+                    <th>Idsponsor</th>
+                    <td>{{ sponsor.idSponsor }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ sponsor.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Logo</th>
+                    <td> <img style="height:100px; width: 100px; object-fit: contain;" src="{{ asset('uploads/sponsors/' ~ sponsor.photo) }}" alt="" class="img-fluid"></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ sponsor.description }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <i class="fa fa-reply"></i>     <a href="{{ path('sponsor_index') }}"> <button class="btn btn-success" > Back to the list</button></a> <i class="fa fa-reply"></i></br>
+
+    <i class="fa fa-pencil"></i>   <a  href="{{ path('sponsor_edit', { 'idSponsor': sponsor.idSponsor }) }}"> <button class="btn btn-dark" > Edit</button></a> <i class="fa fa-pencil"></i>
+
+    {{ form_start(delete_form) }}
+    <i class="fa fa-times text-danger">    </i>   <input class="btn btn-danger" type="submit" value="Delete" type="button"></input> <i class="fa fa-times text-danger">    </i>
+    {{ form_end(delete_form) }}
+
+{% endblock %}

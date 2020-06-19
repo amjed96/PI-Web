@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+
+    <br><br>
+
+    <section class="section cta">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="text-center">
+                        <span class="h6 letter-spacing text-white">Discover your potential</span>
+                        <h2 class="text-lg mt-4 mb-5 text-white">
+                            Book your early seat to get <span class="text-color">{# best #}</span>dicsount
+                        </h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+
+    <section style="padding: 100px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="divider mb-3"></div>
+                    <br><br>
+                    <div class="text-center p-5 shadow">
+                        <h2 class="mb-3"><span class="text-color">{{ article.titre }}</span></h2>
+                        <h4 class="mb-3">Détails</h4>
+                        <br><br>
+                        <img src="{{ asset('uploads/images/articles/') }}{{ article.image }}" width="200px">
+                        <br><br><br>
+                        <p>Nombre: {{ article.contenu }}</p>
+
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="mt-5 text-center">
+                                    {{ form_start(form) }}
+                                    <div style="display: none">{{ form_label(form.contenu) }}</div>{{ form_widget(form.contenu) }}<br>
+                                    <input type="submit" href="{{ path('commentaire_new',{'id':article.id}) }}" class="btn btn-main" value="Commenter"/>
+                                    {{ form_end(form) }}
+                                    <!--<a href="{# path('demande_new',{ 'id': donmateriel.id }) #}" class="btn btn-main">Commenter</a>-->
+                                </div>
+                            </div>
+
+                        </div>
+                        <h4>Nombre de commentaries {{ count }}</h4>
+
+                            {% for com in commentaires %}
+                        <div style="border: 1px solid black;margin-bottom: 5px;padding: 5px;display: inline-flex;width: 320px">
+
+                                <p style="width: 200px;">{{ com.contenu }}</p>
+                            <a style="float: right" class="FB_reactions" data-reactions-type='horizontal' data-unique-id="{{ com.id }}" data-emoji-class="">
+                                <span style="">Like</span>
+                            </a>
+                        </div>
+                            {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+{% endblock %}

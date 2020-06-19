@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+    {% block contenu %}
+
+        <section class="section cta">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <div class="text-center">
+                            <span class="h6 letter-spacing text-white"> </span>
+                            <h2 class="text-lg mt-4 mb-5 text-white">
+                                Proposez votre <span class="text-color">{# best #}</span>Opportunités
+                            </h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+
+        <section style="padding: 100px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="divider mb-3"></div>
+                        <br><br>
+                        {% if reclamations is empty %}
+                            <h1> Pas de reclamations</h1>
+                        {% endif %}
+
+                        {% for rec in reclamations %}
+                        <div class="col-8">
+                            <h1>titre: {{ rec.titre }}</h1>
+                            <p><strong>description : </strong> {{ rec.description }}</p>
+                            <p><strong>etat : </strong>{{ rec.etat }}</p>
+                            <a class="btn btn-primary" href="{{ path('annuler_reclamation',{'id':rec.id}) }}" role="button">Annuler Reclamation</a>
+                        </div>
+                            <hr/>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <ul>
+            <li>
+                <a href="{{ path('reclamation_new') }}">Create a new reclamation</a>
+            </li>
+        </ul>
+
+
+
+
+    {% endblock %}

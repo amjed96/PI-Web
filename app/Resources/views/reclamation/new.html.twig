@@ -1,0 +1,82 @@
+ {% extends 'base.html.twig' %}
+
+    {% block contenu %}
+
+        <section class="section cta">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <div class="text-center">
+                            <span class="h6 letter-spacing text-white"> </span>
+                            <h2 class="text-lg mt-4 mb-5 text-white">
+                                Proposez votre <span class="text-color">{# best #}</span>Opportunités
+                            </h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+
+        <section style="padding: 100px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="divider mb-3"></div>
+                        <br><br>
+                        <div class="text-center p-5 shadow">
+                            <h2 class="mb-3">Faites un don <span class="text-color">SolidarityRefugee</span></h2>
+                            <h4 class="mb-3">Veuillez remplir ce formulaire</h4>
+                            {{ form_start(form) }}
+                            <div class="form-group" style="text-align: left;">
+                                <label>{{ form_label(form.titre) }}</label>
+                                {{ form_widget(form.titre,{'attr':{'class': 'form-control titre','id': 'middle-name'}}) }}
+                                <span id="error-titre"></span>
+                            </div>
+                            <div class="form-group" style="text-align: left;">
+                                <label>{{ form_label(form.description) }}</label>
+                                {{ form_widget(form.description,{'attr':{'class': 'form-control description','id': 'middle-name'}}) }}
+                                <span id="error-description"></span>
+                            </div>
+                            <div class="form-group" style="text-align: left;">
+                                <label>{{ form_label(form.date) }}</label>
+                                {{ form_widget(form.date,{'attr':{'class': 'form-control','id': 'middle-name'}}) }}
+                            </div>
+
+                            <div class="form-group" style="text-align: left;">
+                                <label>{{ form_label(form.categorie) }}</label>
+                                {{ form_widget(form.categorie,{'attr':{'class': 'form-control','id': 'middle-name'}}) }}
+                            </div>
+                            <input id="valider" type="submit" value="Valider" class="btn btn-main"/>
+                                {{ form_end(form) }}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        a<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $('#valider').click(function () {
+                valid = true;
+
+                if ($('.description').val() == "") {
+                    $('#error-description').text('Veuillez remplir ce champ').css('color', 'red').fadeIn();
+                    valid = false;
+                }
+                if ($('.titre').val() == "") {
+                    $('#error-titre').text('Veuillez remplir ce champ').css('color', 'red').fadeIn();
+                    valid = false;
+                }
+                return valid;
+            })
+
+        </script>
+
+
+
+
+{% endblock %}

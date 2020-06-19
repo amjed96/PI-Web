@@ -1,0 +1,44 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <h1>Chauffeur</h1>
+
+    <table class="table table-striped jambo_table bulk_action">
+        <tbody>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ chauffeur.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ chauffeur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ chauffeur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Num_permis</th>
+                <td>{{ chauffeur.numpermis }}</td>
+            </tr>
+            <tr>
+                <th>Num_telephone</th>
+                <td>{{ chauffeur.numtelephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('chauffeur_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('chauffeur_edit', { 'matricule': chauffeur.matricule }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

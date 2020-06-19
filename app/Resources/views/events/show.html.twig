@@ -1,0 +1,58 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <h1>Sponsor</h1>
+    <div class="x_content">
+        <p>La liste des évènements</p>
+        <div class="table-responsive">
+
+            <table class="table table-striped jambo_table bulk_action">
+                <tbody>
+                <tr>
+                    <th>Idevent</th>
+                    <td>{{ event.idEvents }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ event.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Date debut</th>
+                    <td>{{ event.dateDebut|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <th>Date Fin</th>
+                    <td>{{ event.dateFin|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de places</th>
+                    <td>{{ event.nbPlaces }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ event.description }}</td>
+                </tr>
+                <tr>
+                    <th>Lieu</th>
+                    <td>{{ event.lieu }}</td>
+                </tr>
+                <tr class="column-title">
+                    <th>Photo</th>
+                    <td><img style="width:230px;" src="{{ asset('uploads/events/' ~ event.photo) }}"
+                             class="card-img-top"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <i class="fa fa-reply"></i>     <a href="{{ path('events_index') }}"> <button class="btn btn-success" > Back to the list</button></a> <i class="fa fa-reply"></i></br>
+
+    <i class="fa fa-pencil"></i>   <a  href="{{ path('events_edit', { 'idEvents': event.idEvents }) }}"> <button class="btn btn-dark" > Edit</button></a> <i class="fa fa-pencil"></i>
+
+    {{ form_start(delete_form) }}
+    <i class="fa fa-times text-danger">    </i>   <input class="btn btn-danger" type="submit" value="Delete" type="button"></input> <i class="fa fa-times text-danger">    </i>
+    {{ form_end(delete_form) }}
+
+{% endblock %}

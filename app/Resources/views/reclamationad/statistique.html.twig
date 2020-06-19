@@ -1,0 +1,154 @@
+<html>
+<script>
+    window.onresize = function() {
+        var c = document.getElementById("pieChart");
+        c.resize();
+    }
+</script>
+<style>
+    #Welcome {
+        position: absolute;
+        margin: 0px;
+        display: inline-block;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+    #Header {
+        position: absolute;
+        margin: 0px;
+        display: inline-block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #LogOut {
+        position: absolute;
+        right: 0;
+        margin-right: 10px;
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+
+    #LogOut:hover {
+        color: white;
+    }
+
+    #top-bar {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 5%;
+        max-height: 45px;
+        background-color: black;
+        color: white;
+    }
+    .container {
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    #left-menu {
+        display: none;
+        position: absolute;
+        background-color: black;
+        color: white;
+        left: 0;
+        top:4.8%;
+        height:100%;
+        width:25%;
+        max-width:270px;
+    }
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+
+    .change .bar2 {opacity: 0;}
+
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+
+    #left-menu h1{
+        border-bottom-style: solid;
+    }
+
+    #left-menu .inactive {
+        font-size: 25px;
+        color: white;
+        text-decoration: none;
+    }
+
+    #left-menu .active {
+        font-size: 25px;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+    }
+    #left-menu .active:hover {
+        color: white;
+    }
+
+    #myCanvas {
+        position: relative;
+        width:100%;
+        height:100%;
+    }
+
+    #main-content {
+        position: absolute;
+        color: black;
+        left: 0;
+        top:4.8%;
+        height:95.2%;
+        width:100%;
+    }
+</style>
+
+<body>
+<div id="main-content">
+    <!-- <canvas id="myCanvas">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas> -->
+    <pie-chart id="pieChart" style="display:block;height:100%;width:100%;position:relative;">
+        <pchart-element name="Traite" value="{{a}}" colour="#00A676">
+            <pchart-element name="Non Traite" value="2100" colour="#373F51">
+                <pchart-element name="Annule" value="1100" colour="#008DD5">
+    </pie-chart>
+</div>
+</body>
+<script type = "text/javascript">
+    function myFunction(x) {
+        if (document.getElementById("left-menu").style.display == "block")
+        {
+            document.getElementById("left-menu").style.display = "none";
+            document.getElementById("main-content").style.left = "0";
+            document.getElementById("main-content").style.width = "100%";
+        } else {
+            document.getElementById("left-menu").style.display = "block";
+            document.getElementById("main-content").style.left = document.getElementById("left-menu").offsetWidth;
+            document.getElementById("main-content").style.width = window.innerWidth - document.getElementById("left-menu").offsetWidth;
+        }
+        x.classList.toggle("change");
+        var c = document.getElementById("pieChart");
+        c.resize();
+    }
+</script>
+<script src={{ (' http://localhost:8000/front/js/pie-chart-js.js') }}>
+</script>
+</html>

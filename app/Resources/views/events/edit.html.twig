@@ -1,0 +1,139 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <h1> des events</h1>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Modifier Event</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content" style="display: block;">
+
+                    <br>
+                    {{ form_start(edit_form,{'attr':{'class': 'form-horizontal form-label-left','id': 'demo-form2'}}) }}
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">{{ form_label(edit_form.nom) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.nom,{'attr':{'class': 'form-control nom','id': 'middle-name'}}) }}</div>
+                            <span id="error-nom"></span>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">{{ form_label(edit_form.dateDebut) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.dateDebut,{'attr':{'class': 'form-control','id': 'middle-name'}}) }}</div>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">{{ form_label(edit_form.dateFin) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.dateFin,{'attr':{'class': 'form-control','id': 'middle-name'}}) }}</div>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">{{ form_label(edit_form.nbPlaces) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.nbPlaces,{'attr':{'class': 'form-control nbPlace','id': 'middle-name'}}) }}</div>
+                            <span id="error-nbPlace"></span>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">{{ form_label(edit_form.description) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.description,{'attr':{'class': 'form-control description','id': 'middle-name'}}) }}</div>
+                            <span id="error-description"></span>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">{{ form_label(edit_form.lieu) }} <span class="required">*</span>
+
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.lieu,{'attr':{'class': 'form-control lieu','id': 'middle-name'}}) }}</div>
+                            <span id="error-lieu"></span>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">{{ form_label(edit_form.eventphoto) }} <span class="required">*</span>
+                            <span id="error-photo"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.eventphoto,{'attr':{'class': 'form-control','id': 'middle-name'}}) }}</div>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">{{ form_label(edit_form.sponsors) }} <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div>{{ form_widget(edit_form.sponsors,{'attr':{'class': 'form-control','id': 'middle-name'}}) }}</div>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                            <input type="submit" class="btn btn-success" value="Edit" id="valider"/>
+                        </div>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <i class="fa fa-reply"></i> <a href="{{ path('events_index') }}"> <button class="btn btn-success" > Back to the list</button></a> <i class="fa fa-reply"></i>
+
+    <script>
+        document.getElementById("valider").onclick=function(){
+            alert("your event was been updated !!!!");
+
+        };
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $('#valider').click(function () {
+            valid = true;
+            if ($('.nbPlace').val() == "") {
+                $('#error-nbPlace').text('Veuillez remplir ce champ').css('color', 'red').fadeIn();
+                valid = false;
+            }
+            if ($('.nbPlace').val() < 1) {
+                $('#error-nbPlace').text('Nombre de places invalide').css('color', 'red').fadeIn();
+                valid = false;
+            }
+            if ($('.lieu').val() == "") {
+                $('#error-lieu').text('Veuillez remplir ce champ').css('color', 'red').fadeIn();
+                valid = false;
+            }
+            if ($('.description').val() == "") {
+                $('#error-description').text('Veuillez remplir ce champ').css('color', 'red').fadeIn();
+                valid = false;
+            }
+            if ($('.nom').val() == "") {
+                $('#error-nom').text('Veuillez remplir ce champ').css('color', 'red').fadeIn();
+                valid = false;
+            }
+            return valid;
+        })
+
+    </script>
+{% endblock %}

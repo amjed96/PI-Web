@@ -1,0 +1,109 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <!DOCTYPE HTML>
+    <body>
+
+    <div class="col-md-5 col-sm-5  form-group top_search">
+        <h1>Recherche évenement </h1>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." id="recherche">
+            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <div class="col-xs-12 alignright" >
+            <br>
+            <button class="btn btn-info btn-icon-text" onclick="window.print();"><i class="mdi mdi-printer btn-icon-append"></i>IMPRIMER</button>
+            <a href="{{ path('events_new') }}"> <button class="btn btn-info btn-icon-text" > AJOUTER</button>  </a>
+        </div>
+    </div>
+    <h1>La liste des evenements</h1>
+
+
+
+    <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div class="tableau">
+    <table class="table" >
+
+
+
+    <div class="x_content">
+
+    <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+            <thead>
+            <tr>
+                <th class="column-title">Idevent</th>
+                <th class="column-title">Nom</th>
+                <th class="column-title">Date debut</th>
+                <th class="column-title">Date fin</th>
+                <th class="column-title">Nombre places</th>
+                <th class="column-title">Description</th>
+                <th class="column-title">Lieux</th>
+                <th class="column-title">Photo</th>
+                <th class="column-title">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+             {% for event in events %}
+
+                <tr>
+                    <td><a href="{{ path('events_show', { 'idEvents': event.idEvents }) }}">{{ event.idEvents }}</a></td>
+
+                    <td>{{ event.nom }}</td>
+                    <td>{{ event.dateDebut|date('Y-m-d') }}</td>
+                    <td>{{ event.dateFin|date('Y-m-d') }}</td>
+                    <td>{{ event.nbPlaces}}</td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.lieu }}</td>
+                    <td>
+
+                            <img style="height:100px; width: 100px; object-fit: contain;" src="{{ asset('uploads/events/' ~ event.photo) }}" alt="" class="img-fluid">
+
+                    </td>
+                    <td>
+                        <a href="{{ path('events_show', { 'idEvents': event.idEvents }) }}"> <button class="btn btn-dark" > Show</button></a> <i class="fa fa-shower"></i>
+                        <a href="{{ path('events_delete', { 'idEvents': event.idEvents }) }}" ><button class="btn btn-dark" > Delete</button></a> <i class="fa fa-shower"></i>
+                     </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script >
+        $(function () {
+            $("#recherche").keyup(function () {
+                $.ajax({
+                    url : "{{ path('events_index') }}",
+                    data : { 'event' : $(this).val() }
+                }).done(function (response) {
+                    var tableau = $(response).find("table");
+                    $('.tableau').empty();
+                    $('.tableau').append(tableau);
+                });
+            });
+        })
+    </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        {{ chart(a) }}
+
+    </script>
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+{% endblock %}

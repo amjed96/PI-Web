@@ -1,0 +1,45 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+    <h1>Chauffeurs list</h1>
+
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Num_permis</th>
+                <th>Num_telephone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chauffeur in chauffeurs %}
+            <tr>
+                <td><a href="{{ path('chauffeur_show', { 'matricule': chauffeur.matricule }) }}">{{ chauffeur.matricule }}</a></td>
+                <td>{{ chauffeur.nom }}</td>
+                <td>{{ chauffeur.prenom }}</td>
+                <td>{{ chauffeur.numpermis }}</td>
+                <td>{{ chauffeur.numtelephone }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('chauffeur_show', { 'matricule': chauffeur.matricule }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('chauffeur_edit', { 'matricule': chauffeur.matricule }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('chauffeur_new') }}">Create a new chauffeur</a>
+        </li>
+    </ul>
+{% endblock %}

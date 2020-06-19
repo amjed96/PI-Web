@@ -1,0 +1,68 @@
+{% extends 'base2.html.twig' %}
+
+{% block contenu %}
+
+    <h1>Article</h1>
+
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="dashboard_graph">
+
+                <div class="row x_title">
+                    <div class="col-md-4">
+                        <h3>Affichage de l'article</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-8 " style="text-align: center">
+                    <p class="col-md-8 col-sm-8 " style="text-align: left">{{ article.contenu }}</p>
+                    <a><img src="{{ asset('uploads/images/articles/') }}{{ article.image }}" height="100px;"></a>
+                </div>
+
+                <div class="col-md-3 col-sm-3  bg-white">
+                    <div class="x_title">
+
+                        <h2>Détails</h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 ">
+                        <div>
+                            <p>Id : {{ article.id }}</p>
+                            <div class="">
+                                <div class="progress progress_sm" style="width: 76%;">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Titre : {{ article.titre }}</p>
+                            <div class="">
+                                <div class="progress progress_sm" style="width: 76%;">
+                                    <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <a  class="btn btn-info btn-xs" class="fa fa-pencil" href="{{ path('article_index') }}">Back to the list</a>
+    <br><a class="btn btn-success btn-xs" href="{{ path('article_edit', { 'id': article.id }) }}">Edit</a>
+
+{% endblock %}

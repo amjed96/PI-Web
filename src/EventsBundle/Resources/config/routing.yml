@@ -1,0 +1,7 @@
+events_homepage:
+    path:     /l
+    defaults: { _controller: EventsBundle:Front:index }
+affichage3d:
+    path:     /afficher
+    defaults: { _controller: EventsBundle:Front:Afficher}
+
